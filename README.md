@@ -32,6 +32,10 @@ https://github.com/kyiree/spring-boot-gpt
 
 https://github.com/kyiree/spring-framework-gpt
 
+# 分布式事务
+
+Seata 分布式事务框架：https://github.com/kyiree/incubator-seata-gpt
+
 # JVM
 
 # ......未完待续......
