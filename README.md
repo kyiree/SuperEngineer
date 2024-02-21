@@ -14,29 +14,22 @@
 
 # Redis
 
-精通 Redis
-
-https://github.com/kyiree/redis-gpt
+[精通 Redis](https://github.com/kyiree/redis-gpt)
 
 # MySQL
 
-精通 MySQL
-
-https://github.com/mysql/mysql-server
+[精通 MySQL](https://github.com/kyiree/mysql-server-gpt)
 
 # Spring Boot Spring Framework
 
-精通 Spring、SpringBoot 底层原理
-
-https://github.com/kyiree/spring-boot-gpt
-
-https://github.com/kyiree/spring-framework-gpt
+精通 [Spring](https://github.com/kyiree/spring-framework-gpt)、[SpringBoot](https://github.com/kyiree/spring-boot-gpt) 底层原理
 
 # 分布式事务
 
-Seata 分布式事务框架：https://github.com/kyiree/incubator-seata-gpt
+[精通 Seata 分布式事务框架](https://github.com/kyiree/incubator-seata-gpt)
 
-# JVM
+# JVM、JDK
+[精通JDK源码，精通JVM底层原理](https://github.com/kyiree/jdk-gpt)
 
 # 系统设计
 
