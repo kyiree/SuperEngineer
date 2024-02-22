@@ -32,6 +32,7 @@
 [精通JDK源码，精通JVM底层原理](https://github.com/kyiree/jdk-gpt)
 
 # 数据结构与算法
+[精通数据结构与算法](https://github.com/kyiree/algorithm-gpt)
 
 # 系统设计
 
