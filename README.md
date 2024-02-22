@@ -35,7 +35,7 @@
 [精通数据结构与算法](https://github.com/kyiree/algorithm-gpt)
 
 # 系统设计
-[静态图系统设计](https://github.com/kyiree/system-design-gpt)
+[精通系统设计](https://github.com/kyiree/system-design-gpt)
 
 # 综合能力
 [综合能力，面对真实场景如何发挥你的才华](https://github.com/kyiree/other-gpt)
