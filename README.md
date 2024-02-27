@@ -45,6 +45,7 @@
 # 人工智能
 
 # 架构安全
+[架构安全设计](https://github.com/kyiree/security-gpt)
 
 # 支持我
 
