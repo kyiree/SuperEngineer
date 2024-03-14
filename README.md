@@ -57,15 +57,3 @@
 
 # 架构安全
 [架构安全设计](https://github.com/kyiree/security-gpt)
-
-# 支持我
-
-如果你觉得我的项目对你有帮助，欢迎通过以下方式赞助支持我，你的支持将鼓励我继续创作！
-
-<p align="center">
-  <img src="https://github.com/kyiree/SuperEngineer/assets/64623867/ff776eb0-9b88-439f-8169-84da16d484ba" alt="支付宝收款码" width="200"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- 这里的空格用于添加二维码之间的间隔 -->
-  <img src="https://github.com/kyiree/SuperEngineer/assets/64623867/7499d2eb-d90e-4308-a9b3-c76c42c19de8" alt="微信收款码" width="200"/>
-</p>
-
-感谢每一份支持！
