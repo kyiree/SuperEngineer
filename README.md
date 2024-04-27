@@ -2,14 +2,6 @@
 
 [MySQL知识点](https://github.com/kyiree/SuperEngineer/tree/main/MySQL)
 
-# Spring Boot Spring Framework
-
-精通 [Spring](https://github.com/kyiree/spring-framework-gpt)、[SpringBoot](https://github.com/kyiree/spring-boot-gpt) 底层原理
-
-# 分布式事务
-
-[精通 Seata 分布式事务框架](https://github.com/kyiree/incubator-seata-gpt)
-
 # JVM、JDK
 [精通JDK源码，精通JVM底层原理](https://github.com/kyiree/jdk-gpt)
 
