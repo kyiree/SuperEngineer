@@ -1,7 +1,4 @@
-[Redis知识点]()
-# Redis
-
-[精通 Redis](https://github.com/kyiree/redis-gpt)
+[Redis知识点](https://github.com/kyiree/SuperEngineer/tree/main/Redis)
 
 # MySQL
 
