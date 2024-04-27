@@ -1,8 +1,6 @@
 [Redis知识点](https://github.com/kyiree/SuperEngineer/tree/main/Redis)
 
-# MySQL
-
-[精通 MySQL](https://github.com/kyiree/mysql-server-gpt)
+[MySQL知识点](https://github.com/kyiree/SuperEngineer/tree/main/MySQL)
 
 # Spring Boot Spring Framework
 
