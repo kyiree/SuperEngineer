@@ -2,11 +2,7 @@
 
 [MySQL知识点](https://github.com/kyiree/SuperEngineer/tree/main/MySQL)
 
-# JVM、JDK
-[精通JDK源码，精通JVM底层原理](https://github.com/kyiree/jdk-gpt)
-
-# 数据结构与算法
-[精通数据结构与算法](https://github.com/kyiree/algorithm-gpt)
+[Java知识点](https://github.com/kyiree/SuperEngineer/tree/main/Java)
 
 # 系统设计
 [精通系统设计](https://github.com/kyiree/system-design-gpt)
