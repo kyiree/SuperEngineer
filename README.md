@@ -4,8 +4,7 @@
 
 [Java知识点](https://github.com/kyiree/SuperEngineer/tree/main/Java)
 
-# 系统设计
-[精通系统设计](https://github.com/kyiree/system-design-gpt)
+[系统设计](https://github.com/kyiree/SuperEngineer/tree/main/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1)
 
 # 分布式技术
 [精通分布式技术](https://github.com/kyiree/Distributed-Technology)
