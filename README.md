@@ -1,3 +1,5 @@
+个人面试、工作、业余时间学习的一些记录，尽量往深处去思考和实践
+
 [Redis知识点](https://github.com/kyiree/SuperEngineer/tree/main/Redis)
 
 [MySQL知识点](https://github.com/kyiree/SuperEngineer/tree/main/MySQL)
