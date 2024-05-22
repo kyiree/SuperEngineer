@@ -27,4 +27,7 @@ redis 将元素、分数、层级关系封装在 zskiplistNode 这个数据结�
 
 [跳表是怎么实现插入的](https://softwareengineering.stackexchange.com/questions/287254/how-does-a-skip-list-work)
 
+# 跳表
+https://www.toutiao.com/article/7345494269647536675/
+
 # 5 hash
