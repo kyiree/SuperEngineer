@@ -4,37 +4,25 @@
 
 当业务体量小，性能要求不高时，可以部署一个单机版的 Redis：
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/c523282d-c3a4-46ea-a342-3778d8615977)
-
 业务应用可以把 Redis 当缓存使用，从数据库中查询数据，然后写入到 Redis 中，业务应用再从 Redis 中读取数据，由于 Redis 的数据都存储在内存中，所以速度很快。
 
 随着业务体量增大，对 Redis 依赖也加重，假设 Redis 宕机，重启可以恢复服务，但是会丢失数据，这时就需要引入数据持久化的做法。
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/afb2df80-263e-42bb-ba99-d0d06f2491e2)
 
 # 2 Redis 数据持久化
 
 当 Redis 重启时，我们把磁盘中的数据快速恢复到内存中，这样它就可以继续正常提供服务
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/1dd08c9a-30b5-433d-94d0-4c4a14c7ea80)
 
 最容易想到的一个方案：Redis 每一次执行写操作，除了写内存外，同时也写一份到磁盘上，就像这样：
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/9a9ecbe7-f0cb-4557-bf26-61fba19d1a23)
 
 但是问题来了：客户端的每次写操作，既需要写内存，又需要写磁盘，而写磁盘的耗时相比写内存来说，肯定要慢得多，这势必会影响到 Redis 的性能。
 
 这时我们需要分析写磁盘的细节问题，具体如下：
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/89647246-c76d-41c2-a7b6-b159743564ac)
-
 优化方案也很简单，Redis 写内存由主线程来做，写内存完成后就给客户端返回结果，然后 Redis 用另一个线程去写磁盘，这样就可以避免主线程写磁盘对性能的影响，也就是 Redis AOF 方案
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/6f4a8797-fb02-4c48-9c2f-5e0c76891c61)
-
 除此之外，还可以用"数据快照"来实现，也就是 Redis RDB 方案：
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/179884e1-c42f-4236-9bec-ae195f93a4b8)
 
 - 如果业务对于数据丢失不敏感，选择 RDB；
 
@@ -42,25 +30,17 @@
 
 - 如果即保证数据完整性，还能让持久化文件体积更小、恢复更快 -- 混合持久化。当 AOF 在做 rewrite 时，Redis 先以 RDB 格式在 AOF 中写入一个数据快照，再把在这期间产生的每一个写命令，追加到 AOF 文件中
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/94bd906e-b539-4e3e-9d9a-37c612453a97)
-
 因为 AOF 体积进一步压缩，你在使用 AOF 恢复数据时，这个恢复时间就会更短了 ！
 
 # 3 主从复制：多副本
 
 一个实例宕机，只能用恢复数据来解决，那我们部署多个 Redis 实例，然后让这些实例数据保持实时同步，这样当一个实例宕机时，我们在剩下的实例中选择一个继续提供服务就好。
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/2fc5381d-37e4-41cc-94b9-a27f5685026e)
-
 采用多副本的方案，它的优势是：
 - 缩短不可用的时间：master 发生宕机，我们可以手动把 slave 提升为 master 继续提供服务
 - 提升读性能：让 slave 分担一部分读请求，提升应用的整体性能
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/cb1e349c-2329-453d-8538-8ba0b6db8af6)
-
 主从复制的问题在于，当 master 宕机时，我们需要手动把 slave 提升为 master，这个过程也需要花费时间 -- 这就引出了哨兵模式，实现故障自动切换。
-
-[可以看下 Redis 主从复制的底层原理](https://github.com/kyiree/redis-gpt/blob/unstable/%E9%9D%A2%E8%AF%95%E9%A2%98/Redis%20%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86.md)
 
 # 4 哨兵模式：故障自动切换
 
@@ -68,15 +48,9 @@
 - master 正常回复，表示状态正常，回复超时表示异常
 - 哨兵发现异常，发起主从切换
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/c8895c3e-6b92-4fd7-94c6-df6cf3bf4f35)
-
 这里有个问题，如果 master 状态正常，哨兵在询问 master 时网络发生了问题，哨兵可能会误判。
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/ac66052b-49b7-4a19-9343-238edeaaa476)
-
 解决方案是部署多个哨兵，分布在不同机器上，一起监测 master 状态。
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/77d1048b-4308-4bb5-9fe8-79dab1eb9dcf)
 
 - 多个哨兵每间隔一段时间，询问 master 是否正常
 - master 正常回复，表示状态正常，回复超时表示异常
@@ -87,11 +61,7 @@
 
 随着业务体量的爆发性增长，分片集群的解决方案顺势而生，假设一个实例扛不住写压力，可以部署多个实例，然后把这些实例按照一定的规则组织起来，把它们当作一个整体，对外提供服务：
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/2098dfeb-453a-4a05-bda6-8745ad9223a6)
-
 # 5.1 客户端分配方案架构如下：
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/b3d4c0ea-94f1-4da8-ba2c-add4d2a60853)
 
 缺点是客户端需要维护这个路由规则，也就是说，你需要把路由规则写进你的业务代码中。
 
@@ -99,17 +69,11 @@
 
 更进一步的优化方式是在客户端和服务端之间加一个中间代理层 proxy：
 
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/036b46e3-e355-47e7-8da8-7ad0df9bd245)
-
 随着官方退出的 Redis Cluster 方案逐渐成熟，采用度越来越高：
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/82494771-a403-43b6-9615-d2c923f7d1a0)
 
 无需部署哨兵集群，集群内 Redis 节点通过 Gossip 协议互相探测健康状态，在故障时发起自动切换
 
 为了降低老业务的客户端升级成本，业界开始自研针对 proxy 的方案，架构如下：
-
-![image](https://github.com/kyiree/redis-gpt/assets/64623867/b7bc1df5-fc8d-4ae9-9c48-78ecc76cf0b6)
 
 这样，客户端无需做任何变更，只需把连接地址切到 proxy 上即可，由 proxy 负责转发数据，以及应对后面集群增删节点带来的路由变更。
 
