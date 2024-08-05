@@ -5,3 +5,9 @@ IOC 是一种设计思想，在 spring 中，把对象的创建和初始化交�
 # bean 的生命周期
 
 实例化 -》属性赋值 -》初始化 -》销毁，使用 @PostConstruct 可以在属性赋值之后做一些初始化的操作，对业务自定义扩展点，如果在类上标注了 @Scope(SCOPE_PROTOTYPE)，那么每次都会获取一个新的 bean，BeanFactory 不会把这个 bean 放到 IOC 容器里面
+
+# spring aop
+
+Spring AOP的实现方式是动态织入，动态织入的方式是在运行时动态将要增强的代码织入到目标类中，这样往往是通过动态代理技术完成的；如Java JDK的动态代理(Proxy，底层通过反射实现)或者CGLIB的动态代理(底层通过继承实现)，Spring AOP采用的就是基于运行时增强的代理技术。
+
+https://pdai.tech/md/spring/spring-x-framework-aop.html
