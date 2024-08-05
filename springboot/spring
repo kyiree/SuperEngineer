@@ -2,6 +2,8 @@
 
 IOC 是一种设计思想，在 spring 中，把对象的创建和初始化交给 IOC 容器，如果某个对象需要调用另外一个对象，只需要从 IOC 容器中获取另外一个对象的实例即可，从而实现了解耦
 
+https://pdai.tech/md/spring/spring-x-framework-ioc-source-1.html
+
 # bean 的生命周期
 
 实例化 -》属性赋值 -》初始化 -》销毁，使用 @PostConstruct 可以在属性赋值之后做一些初始化的操作，对业务自定义扩展点，如果在类上标注了 @Scope(SCOPE_PROTOTYPE)，那么每次都会获取一个新的 bean，BeanFactory 不会把这个 bean 放到 IOC 容器里面
