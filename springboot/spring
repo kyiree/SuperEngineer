@@ -10,6 +10,6 @@ https://pdai.tech/md/spring/spring-x-framework-ioc-source-1.html
 
 # spring aop
 
-Spring AOP的实现方式是动态织入，动态织入的方式是在运行时动态将要增强的代码织入到目标类中，这样往往是通过动态代理技术完成的；如Java JDK的动态代理(Proxy，底层通过反射实现)或者CGLIB的动态代理(底层通过继承实现)，Spring AOP采用的就是基于运行时增强的代理技术。
+Spring AOP的实现方式是动态织入，动态织入的方式是在运行时动态将要增强的代码织入到目标类中，这样往往是通过动态代理技术完成的；如Java JDK的动态代理(Proxy，底层通过反射实现)或者CGLIB的动态代理(底层通过继承实现)，Spring AOP采用的就是基于运行时增强的代理技术。在启动加载 bean 的时候，会去判断这个 bean 是否需要创建代理对象
 
 https://pdai.tech/md/spring/spring-x-framework-aop.html
