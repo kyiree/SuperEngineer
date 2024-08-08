@@ -14,4 +14,4 @@ ReentrantLock lock = new ReentrantLock();
 
 lock.lock();
 
-内部会循环 CAS，直到赋值成功
+内部会循环 CAS，直到赋值成功，如果设置了 timed 为 false，上面的例子默认情况下，在循环一定的次数还没有获取到锁后，会进入队列等待，把当前线程挂起
